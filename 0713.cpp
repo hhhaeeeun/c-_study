@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include"common.h"
-#include"func.h"
+#include"func.h" //extern
 
 /*
 //변수의 종류
@@ -37,10 +37,56 @@ int main()
 	Add(10, 20);
 
 	giExtern = 500;
+	
 
-	//신규 파일을 작성했어~~
+	//포인터 변수
+	//4바이트 변수에서 포인터로 변경 
+	//int 변수를 가리키는 변수가 됨
+	//해당 포인터가 전달된 주소를 해석하는 단위
+
+	int i = 100;
+	int* pInt = nullptr; 
+	pInt = &i;
+
+	float f = 3.f;
+	//주소로 접근
 
 
+	pInt = (int*) & f;
+	i= *pInt;
+
+	pInt += 1;
+	//+4 증가됨(다음위치로)
+
+	/*
+	pInt = new int[100];
+
+	pInt[10] = 100;
+	delete[] pInt;
+	*/
+
+	//배열의 특징
+	//1. 메모리가 연속적인 구조이다.
+	//2. 배열의 이름은 배열의 시작 주소이다.
+
+	int iArr[10] = {};
+	
+	//iArr[1] = *(iArr + 1);
+	//같은표현
+
+	*(iArr + 1) = 10;
+	//iArr[1] = 10;
+
+	*(iArr) = 10;
+
+
+	int a;
+	scanf_s("%d", &a);
+
+
+
+	printf("%d\n", (int)sizeof(pInt));
+	printf("%d\n", a);
 	return 0;
 
-}
+} 
