@@ -38,6 +38,8 @@ int main()
 
 	giExtern = 500;
 
+	//신규 파일을 작성했어~~
+
 
 	return 0;
 
