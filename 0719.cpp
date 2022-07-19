@@ -69,7 +69,6 @@ int main()
 	const int* const pConstIntConst = nullptr;
 	//초기화 시 가리킨 대상만 가리킴, 가리키는 원본 수정도 불가
 
-
 	int const* p = &a;
 	//*p = 0
 	//오류
