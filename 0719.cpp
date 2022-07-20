@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<wchar.h>
 
 void Output(const int* pI)
 {
@@ -116,6 +117,49 @@ int main()
 		
 	}
 
+	{
+		//문자
+		char c = 49;
+		wchar_t wc = 49;
+		short s = 49;
+
+		c = '1';
+		bool b = 1;
+		
+		wc = '59';
+		int i = 0;
+
+	}
+
+	{
+		//문자 
+		//char(1), wchar(2)
+		char c = 'a';
+		wchar_t wc = 'a';
+
+		char szChar[7] = "abcdef";
+		wchar_t szWChar[7] = L"abcdef";
+		//wchar_t szWChar[7] = { 97, 98, 99, 100, 101, 102, };
+		//위와 같음
+		//문자는 마지막에 0이 포함되어있음
+
+		short arrShort[10] = { 97, 98, 99, 100, 101, 102, };
+		//short arrShort[10] = L"abcdef";
+		//불가능
+
+
+		const wchar_t* pChar = L"abcdef";
+		//문자열의 정체는 주소값을 전달하는 것
+		//포인터 변수가 주소값을 받음
+		//읽기전용 메모리를 접근하고 있음
+	}
+
+	{
+		wchar_t szName[10] = L"Raimond";
+
+		int iLen = wcslen(szName);
+		printf("%d\n", iLen);
+	}
 
 	
 }
