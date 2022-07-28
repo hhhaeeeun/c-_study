@@ -13,6 +13,9 @@ public:
 	void Push_back(const T& _Data);
 	void resize(int _iResizeCount);
 	T& operator[] (int idx);
+	int data() { return m_pData; }
+	T& size() { return m_iCount; }
+	int capacity() { return m_iMaxCount; }
 
 
 public:

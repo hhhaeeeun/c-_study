@@ -37,7 +37,7 @@ private:
 public:
 	void PushBack(const T& _iData);
 	void PushFront(const T& _iData);
-
+	int size() { return m_iCount; }
 public:
 	CList();
 	~CList();
