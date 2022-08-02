@@ -18,7 +18,55 @@ public:
 	T& operator[] (int idex);
 	T* data() { return m_pData; }
 	T& at(int idx) { return m_pData[idx]; }
+	class iterator
+	{
+	private:
+		CArr* m_pArr;
+		T* iter;
+		int m_iIdx;
 
+	public:
+		T& operator*()
+		{
+			//iterator가 알고있는 시작주소와 가변배열이 알고있는 주소가 달라진경우 오류처리
+			//iterator가 end iterator 인 경우 오류처리
+			if (iter != m_pArr->m_pData || -1 == m_iIdx)
+				assert(nullptr);
+			return iter[m_ildx];
+		}
+		T& operator++()
+		{
+			return iter + (++m_iIdx);
+		}
+
+
+		iterator()
+			:m_pArr(nullptr)
+			, iter(nullptr)
+			, m_iIdx(-1)
+		{
+
+		}
+		iterator(CArr* cData, T* pData, int iIdx)
+			:m_pArr(cData)
+			,iter(pData)
+			,m_iIdx(iIdx)
+		{
+
+		}
+
+	};
+	iterator begin()
+	{
+		//이너클래스는 부모클래스의 private에 접근할 수 있음
+		//생성자로 전달
+		//지역변수 생성해서 리턴해도 됨
+		return iterator(this, this->m_pData, 0);
+	}
+	iterator end()
+	{
+		return iterator(this, m_pData, -1);
+	}
 };
 
 template<typename T>

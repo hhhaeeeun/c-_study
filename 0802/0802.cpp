@@ -17,4 +17,14 @@ int main()
 
 	vector<int>::iterator iter = vecInt.begin();
 	int i = *iter;
+
+	for (iter = vecInt.begin(); iter != vecInt.end(); ++iter)
+	{
+		cout << *iter << endl;
+	}
 }
+
+
+//*
+//++, --
+//==, !=
