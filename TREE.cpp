@@ -2,16 +2,60 @@
 #include <map>
 #include<set>
 
-using std::cout;
+#include <string>
+#include "CBST.h"
+
+using std::wcout;
 using std::endl;
 
 using std::map;
 using std::make_pair;
 
 using std::set;
+using std::wstring;
 
 #define MAN 1
 #define WOMAN 2
+
+//열거형
+enum MY_TYPE
+{
+	TYPE_1,	//0
+	TYPE_2,	//1
+	TYPE_3,	//2
+	TYPE_4 = 100,
+	TYPE_5, //101
+};
+
+int a = TYPE_3;
+//a = 2
+
+enum class OTHER_TYPE
+{
+	TYPE_7,	//0
+	TYPE_1,	//1
+
+};
+
+
+int b = TYPE_1;
+//b = 0;
+int c = (int)OTHER_TYPE::TYPE_1;
+//c = 1;
+
+#define CLASS_1 0
+#define CLASS_2 1
+
+int d = CLASS_1;
+//int d = 0;
+//전처리기
+//디버깅 시 0 으로 보임(값으로 보임)
+//define을 다시 찾아야 함
+//디버깅 불가
+
+//enum
+//디버깅에도 TYPE_1로 보일 수 있게 함
+//타입 정보를 인식하고 있음
 
 struct tStdInfo
 {
@@ -89,6 +133,9 @@ int main()
 	stdMap.insert(make_pair(L"김하은", info2));
 
 
+	//맵의 키 값을 문자열의 주소로 저장함
+	//문자열 그 자체로 비교하는 것이 아님
+	//문자를 비교하여 찾고싶은 경우에는 문자열 클래스를 넣어주어야 함
 	map<const wchar_t*, tStdInfo>::iterator mapiter;
 	mapiter = stdMap.find(L"홍길동");
 
@@ -99,15 +146,80 @@ int main()
 	//mapiter->second 
 
 	//없는 값을 찾으면 end iterator로 반환됨
-	mapiter = stdMap.find(L"엄길동");
-
+	mapiter = stdMap.find(L"김하은");
+	_wsetlocale(LC_ALL, L"korean");
 	//데이터를 찾지 못함 
 	if (mapiter == stdMap.end())
 	{
+		wcout <<  L"데이터를 찾을 수 없다." << endl;
+	}
+	else
+	{
+		wcout << L"이름 : " << mapiter->second.szName << endl;
+		wcout << L"나이 : " << mapiter->second.age << endl;
+		if (MAN == mapiter->second.gender)
+		{
+			wcout << L"성별 : 남자" << endl;
+		}
+		else if (WOMAN == mapiter->second.gender)
+		{
+			wcout << L"성별 : 여자" << endl;
+		}
+		else
+		{
+			wcout << L"성별 : 알 수 없음" << endl;
+		}
 	
-		cout << "데이터를 찾을 수 없다." << endl;
+		
+	}	
+	
+	//문자를 비교하여 찾고싶은 경우에는 문자열 클래스를 넣어주어야 함
+	//비교연산자가 구현이 되어있는 클래스만 가능
+	map<wstring, tStdInfo> mapStdInfo;
+
+
+	wstring str;
+	//배열초기화, 문자를 넣음 (읽기메모리 주소가 아님)
+	//자신의 공간 안에 문자를 삽입하는 = 오퍼레이터가 존재함
+	//문자를 추가하는 += 오퍼레이터도 존재함
+	str = L"abcdef";
+	str += L"ghijk";
+	str += L"lmnop";
+
+	wcout << str << endl;
+
+	//별도의 공간에 동적할당 사용
+	//가변배열과 유사 (vector<wchar_t>)
+	str = L"abcdefghijklmnop";
+	str[1] = L'c';
+
+	wstring str2;
+
+	// ==, < , > 오퍼레이터가 모두 존재
+	//맵에서 유용하게 비교 연산자를 사용할 수 있음
+	if (str == str2)
+	{
+		//자신의 문자열을 비교 
+		//주소값을 확인하는 것이 아님
+
 	}
 
+
+	CBST<int, int> bstint;
+	
+
+	tPair<int, int> pair;
+	pair.first = 100;
+	bstint.insert(pair);
+	pair.first = 150;
+	bstint.insert(pair);
+	pair.first = 50;
+	bstint.insert(pair);
+
+
+	wcout << a << endl;
+	wcout << b << endl;
+	wcout << c << endl;
 	return 0; 
 
 } 
