@@ -31,9 +31,13 @@ int main()
 	//pair.first = 50;
 	//bstint.insert(pair);
 
-	bstint.insert(make_bstpair(100, 0)); 
-	bstint.insert(make_bstpair(150, 0));
-	bstint.insert(make_bstpair(50, 0));
+	bstint.insert(make_bstpair(100, 0));	//								100
+	bstint.insert(make_bstpair(150, 0));	//					50					150
+	bstint.insert(make_bstpair(50, 0));//		25			75			125			175
+	bstint.insert(make_bstpair(25, 0));
+	bstint.insert(make_bstpair(75, 0));
+	bstint.insert(make_bstpair(125, 0));
+	bstint.insert(make_bstpair(175, 0));
 
 	CBST<int, int>::iterator bstiter = bstint.find(100);
 	/*
@@ -43,7 +47,19 @@ int main()
 	}
 	*/
 
+	//¿¬»êÀÚ operator
+	//!=, ==, ++, -- , ->
+	for (bstiter = bstint.begin(); bstiter != bstint.end(); ++bstiter)
+	{
+		wcout << bstiter->first << bstiter->second << endl;
+	}
+
+	bstiter = bstint.erase(bstiter);
+
+
+
 	map<int, int> mapInt;
+
 
 	mapInt.insert(make_pair(100, 100));
 	map<int,int>::iterator mapiter = mapInt.find(100);
